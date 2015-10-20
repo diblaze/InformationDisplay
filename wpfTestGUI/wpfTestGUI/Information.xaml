@@ -1,0 +1,25 @@
+﻿<Page x:Class="wpfTestGUI.Information"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:wpfTestGUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="1005" d:DesignWidth="1375"
+      Title="Information"
+      Background="White">
+
+    <Grid Background="#379bf9">
+
+
+        <TabControl TabStripPlacement="Top" Margin="10" HorizontalAlignment="Center" Width="1355">
+            <TabItem Header="Allmänt" >
+                <Frame Name="frameGeneral"></Frame>
+            </TabItem>
+            <TabItem Header="Kontakt">
+                <Label Content=""></Label>
+            </TabItem>
+        </TabControl>
+        
+    </Grid>
+</Page>

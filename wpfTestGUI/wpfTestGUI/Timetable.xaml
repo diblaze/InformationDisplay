@@ -1,0 +1,45 @@
+﻿<Page x:Class="wpfTestGUI.Timetable"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:wpfTestGUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="1005" d:DesignWidth="1375"
+      Title="Timetable"
+      Background="White">
+
+    <Grid>
+        <ComboBox Width="Auto" Height="40" Margin="149,42,1020,923" SelectionChanged="ChangeTimetable">
+            <ComboBoxItem FontSize="20pt" Name="EK13A">Ek13A</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="EK13B">Ek13B</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="EK14A">Ek14A</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="EK14B">Ek14B</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="EK15A">Ek15A</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="EK15B">Ek15B</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="HU13">Hu13</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="HU14">Hu14</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="HU15">Hu15</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="NA13A">Na13A</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="NA13B">Na13B</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="NA13C">Na13C</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="NA14A">Na14A</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="NA14B">Na14B</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="NA15A">Na15A</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="NA15B">Na15B</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="SA13">Sa13</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="SA14">Sa14</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="SA15A">Sa15A</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="SA15B">Sa15B</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="TE13">Te13</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="TE14">Te14</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="TE15A">Te15A</ComboBoxItem>
+            <ComboBoxItem FontSize="20pt" Name="TE15B">Te15B</ComboBoxItem>
+        </ComboBox>
+        <Image x:Name="TimetableImage"  HorizontalAlignment="Left" Height="913" VerticalAlignment="Top" Width="1365" Margin="0,92,0,0">
+
+        </Image>
+        <Label x:Name="lblClassName" Content="Klass:" FontSize="23pt" HorizontalAlignment="Left" Margin="44,36,0,0" VerticalAlignment="Top" Width="100"/>
+
+    </Grid>
+</Page>
