@@ -4,13 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="InformationDisplay" Height="1078" Width="1920" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Title="InformationDisplay" Height="1440" Width="2160" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         WindowState="Maximized">
     <Grid Background="#074ab9">
-
-        
-        <ListBox Height="1010" Margin="35,20,1429,20"  Background="#379bf9"
-                 Grid.RowSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+        <ListBox Margin="97,40,1528.667,40"  Background="#379bf9" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Resources>
@@ -73,8 +70,8 @@
 
         </ListBox>
 
-        <Frame x:Name="ContentFrame" HorizontalAlignment="Left" Height="1010" Margin="510,15,0,0"
-               VerticalAlignment="Top" Width="1374" Grid.Row="0" />
+        <Frame x:Name="ContentFrame" HorizontalAlignment="Left" Height="1332" Margin="664,40,0,0"
+               VerticalAlignment="Top" Width="1442" Grid.Row="0" />
 
 
     </Grid>
