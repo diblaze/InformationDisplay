@@ -26,5 +26,40 @@ namespace uwInformationDisplay
         {
             this.InitializeComponent();
         }
+
+        private void ButtonHamburger_OnClick(object sender, RoutedEventArgs e)
+        {
+            SplitViewHamburger.IsPaneOpen = !SplitViewHamburger.IsPaneOpen;
+        }
+
+        private void ListBoxHamburger_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ClosePane();
+
+            if (ListBoxItemInformation.IsSelected)
+            {
+                
+                
+            } else if (ListBoxItemMap.IsSelected)
+            {
+                
+            } else if (ListBoxItemTimetable.IsSelected)
+            {
+                MainFrame.Navigate(typeof (Timetable));
+            }
+        }
+
+        private void ClosePane()
+        {
+            if (SplitViewHamburger.IsPaneOpen)
+            {
+                SplitViewHamburger.IsPaneOpen = false;
+            }
+        }
+
+        private void ButtonBack_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
