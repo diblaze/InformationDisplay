@@ -13,7 +13,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <RelativePanel>
-            <ComboBox Width="Auto" SelectionChanged="ChangeTimeTable">
+            <ComboBox Width="100" SelectionChanged="ChangeTimetable" Name="ComboBoxTimeTable">
                 <ComboBoxItem FontSize="28" Name="EK13A">Ek13A</ComboBoxItem>
                 <ComboBoxItem FontSize="28" Name="EK13B">Ek13B</ComboBoxItem>
                 <ComboBoxItem FontSize="28" Name="EK14A">Ek14A</ComboBoxItem>
@@ -39,7 +39,9 @@
                 <ComboBoxItem FontSize="28" Name="TE15A">Te15A</ComboBoxItem>
                 <ComboBoxItem FontSize="28" Name="TE15B">Te15B</ComboBoxItem>
             </ComboBox>
+            <Image RelativePanel.Below="ComboBoxTimeTable" Name="ImageTimetable" Stretch="UniformToFill" MaxWidth="700"></Image>
         </RelativePanel>
+        
 
     </Grid>
 </Page>
