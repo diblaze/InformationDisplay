@@ -1,33 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Reflection;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using Windows.ApplicationModel;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace uwInformationDisplay
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     //SchoolClasses made for easier and understandable access to classIDlist
     internal enum SchoolClasses
@@ -68,7 +54,7 @@ namespace uwInformationDisplay
             InitializeComponent();
 
 
-            DateTime todayTime = DateTime.Today;
+            var todayTime = DateTime.Today;
             //If today is a monday then set mondayInit to true.
             //TODO: Monday check.
             //if (todayTime.DayOfWeek == DayOfWeek.Monday)
@@ -77,7 +63,7 @@ namespace uwInformationDisplay
             //    mondayInit = Settings.Default.mondayInit;
             //}
 
-           PopulateList();
+            PopulateList();
         }
 
         /// <summary>
@@ -112,7 +98,7 @@ namespace uwInformationDisplay
         public void ChangeTimetable(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
         {
             //get combobox
-            ComboBox comboItem = sender as ComboBox;
+            var comboItem = sender as ComboBox;
             //if null then return
             if (comboItem == null)
             {
@@ -120,12 +106,12 @@ namespace uwInformationDisplay
             }
 
             //get the selecteditem
-            ComboBoxItem cbi = (ComboBoxItem)comboItem.SelectedItem;
+            var cbi = (ComboBoxItem) comboItem.SelectedItem;
 
             //check what class the user selected, download accordingly
             switch (cbi?.Content?.ToString())
             {
-                #region Download ID
+                    #region Download ID
 
                 case "Ek13A":
                     DownloadTimetable(SchoolClasses.Ek13A, "EK13A");
@@ -224,7 +210,7 @@ namespace uwInformationDisplay
         private async void DownloadTimetable(SchoolClasses classToDownload, string fileName)
         {
             //Store our specific classId by using classToDownload.
-            var urlId = classIDlist[(int)classToDownload];
+            var urlId = classIDlist[(int) classToDownload];
             var todayTime = DateTime.Today;
 
             var week = GetWeekNumber(todayTime);
@@ -246,14 +232,14 @@ namespace uwInformationDisplay
 
             //Uri pathToTimeTableFolder = new Uri(BaseUri, "/timetables/");
             var installFolder = ApplicationData.Current.LocalFolder;
-            StorageFolder timetableFolder = await installFolder.TryGetItemAsync("timetables") as StorageFolder;
+            var timetableFolder = await installFolder.TryGetItemAsync("timetables") as StorageFolder;
             if (timetableFolder == null)
             {
                 RecreateTimeTablesFolder();
                 timetableFolder = await installFolder.TryGetItemAsync("timetables") as StorageFolder;
             }
-            StorageFile timetableFile = (StorageFile) await timetableFolder.TryGetItemAsync(fileName + ".png");
-            
+            var timetableFile = (StorageFile) await timetableFolder.TryGetItemAsync(fileName + ".png");
+
 
             //if the timetable already exists
             if (timetableFile != null)
@@ -271,15 +257,15 @@ namespace uwInformationDisplay
             {
                 var uri = new Uri(urlToDownload);
                 var downloader = new BackgroundDownloader();
-                StorageFile downloadedTimetable = await timetableFolder.CreateFileAsync(fileName +".png",
+                var downloadedTimetable = await timetableFolder.CreateFileAsync(fileName + ".png",
                     CreationCollisionOption.ReplaceExisting);
-                DownloadOperation download = downloader.CreateDownload(uri, downloadedTimetable);
+                var download = downloader.CreateDownload(uri, downloadedTimetable);
                 await download.StartAsync().AsTask();
             }
 
             //change TimetableImage to downloaded timetable image
             var uriTimetableFolder = new Uri(timetableFolder.Path);
-            BitmapImage bitmapImage = new BitmapImage(new Uri(uriTimetableFolder + "/" + fileName + ".png"));
+            var bitmapImage = new BitmapImage(new Uri(uriTimetableFolder + "/" + fileName + ".png"));
             ImageTimetable.Source = bitmapImage;
         }
 
@@ -289,8 +275,8 @@ namespace uwInformationDisplay
         /// <param name="path">Path to a folder where the <c>deleting</c> will take place.</param>
         private static async void RecreateTimeTablesFolder()
         {
-            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-            StorageFolder timetableFolder = await storageFolder.TryGetItemAsync("timetables") as StorageFolder;
+            var storageFolder = ApplicationData.Current.LocalFolder;
+            var timetableFolder = await storageFolder.TryGetItemAsync("timetables") as StorageFolder;
 
             if (timetableFolder != null)
             {
@@ -298,7 +284,6 @@ namespace uwInformationDisplay
             }
 
             timetableFolder = await storageFolder.CreateFolderAsync("timetables");
-
         }
 
         /// <summary>
@@ -309,14 +294,14 @@ namespace uwInformationDisplay
         /// <param name="path">Path to <c>timetable</c> folder.</param>
         private static async void ForceDownload(string urlToDownload, string fileName, string path)
         {
-            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-            StorageFolder timetableFolder = await storageFolder.TryGetItemAsync("timetables") as StorageFolder;
+            var storageFolder = ApplicationData.Current.LocalFolder;
+            var timetableFolder = await storageFolder.TryGetItemAsync("timetables") as StorageFolder;
 
             var uri = new Uri(urlToDownload);
             var downloader = new BackgroundDownloader();
-            StorageFile downloadedTimetable = await timetableFolder.CreateFileAsync(fileName + ".png",
+            var downloadedTimetable = await timetableFolder.CreateFileAsync(fileName + ".png",
                 CreationCollisionOption.ReplaceExisting);
-            DownloadOperation download = downloader.CreateDownload(uri, downloadedTimetable);
+            var download = downloader.CreateDownload(uri, downloadedTimetable);
             await download.StartAsync().AsTask();
         }
     }
