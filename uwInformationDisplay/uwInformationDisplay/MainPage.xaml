@@ -52,9 +52,10 @@
 
                 </ListBox>
             </SplitView.Pane>
+            
 
             <SplitView.Content>
-                <Frame Name="MainFrame" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" />
+                <Frame Name="MainFrame" />
             </SplitView.Content>
         </SplitView>
 

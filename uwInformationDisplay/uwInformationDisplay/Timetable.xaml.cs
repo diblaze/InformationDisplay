@@ -283,7 +283,7 @@ namespace uwInformationDisplay
                 await timetableFolder.DeleteAsync(StorageDeleteOption.PermanentDelete);
             }
 
-            timetableFolder = await storageFolder.CreateFolderAsync("timetables");
+            await storageFolder.CreateFolderAsync("timetables");
         }
 
         /// <summary>
@@ -299,6 +299,9 @@ namespace uwInformationDisplay
 
             var uri = new Uri(urlToDownload);
             var downloader = new BackgroundDownloader();
+
+            if (timetableFolder == null) return;
+
             var downloadedTimetable = await timetableFolder.CreateFileAsync(fileName + ".png",
                 CreationCollisionOption.ReplaceExisting);
             var download = downloader.CreateDownload(uri, downloadedTimetable);
