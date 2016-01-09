@@ -1,0 +1,2265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.novasoftware.se/webservices" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.novasoftware.se/webservices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Novaschem Web Service</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.novasoftware.se/webservices">
+      <s:element name="GetErrorAsData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="culture" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetErrorAsDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetErrorAsDataResult" type="tns:ErrorData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ErrorData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InternalCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetErrorAsString">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pNo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="culture" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetErrorAsStringResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetErrorAsStringResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetScheduleFileAsXml">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="scheduleData" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetScheduleFileAsXmlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetScheduleFileAsXmlResult" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="schoolId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReportUserListChange">
+        <s:complexType />
+      </s:element>
+      <s:element name="ReportUserListChangeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsAsleep">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsAsleepResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsAsleepResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStatistics">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetStatisticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStatisticsResult" type="tns:WebServiceStatistics" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WebServiceStatistics">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TotalRequests" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RequestsThisMinute" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RequestsMinuteMax" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CurrentlyLoading">
+        <s:complexType />
+      </s:element>
+      <s:element name="CurrentlyLoadingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CurrentlyLoadingResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BackupFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BackupFilesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Mirror">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MirrorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MirrorResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveFilesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTeachersForGroupOrClass">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="groupOrClass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTeachersForGroupOrClassResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTeachersForGroupOrClassResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetScheduleIDList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lngTypeMask" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetScheduleIDListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetScheduleIDListResult" type="tns:ArrayOfScheduleID" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfScheduleID">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ScheduleID" nillable="true" type="tns:ScheduleID" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ScheduleID">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+        </s:sequence>
+        <s:attribute name="Type" type="s:int" use="required" />
+      </s:complexType>
+      <s:element name="CreateScheduleSession">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateScheduleSessionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateScheduleSessionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetScheduleData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="scheduleSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lessonEvents" type="tns:ArrayOfLessonEventInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLessonEventInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LessonEventInfo" nillable="true" type="tns:LessonEventInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LessonEventInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Start" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Length" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Teacher" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Room" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetScheduleDataResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetScheduleData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="secureConnection" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="fileFormat" type="tns:ScheduleImageFileFormat" />
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="flags" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="period" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="week" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="day" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="mode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="height" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxWidth" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxHeight" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="printer" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="colors" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="head" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="clock" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="foot" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ScheduleImageFileFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="Wmf" />
+          <s:enumeration value="Png" />
+          <s:enumeration value="Gif" />
+          <s:enumeration value="Bmp" />
+          <s:enumeration value="Pdf" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetScheduleDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ScheduleData" nillable="true" type="tns:ScheduleData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ScheduleData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Time" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageFileData" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="MetaFileInfo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WebViewerURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoSizeWebViewerURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetWeekIDList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="period" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWeekIDListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWeekIDListResult" type="tns:ArrayOfWeekID" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfWeekID">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WeekID" nillable="true" type="tns:WeekID" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WeekID">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetScheduleInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetScheduleInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetScheduleInfoResult" type="tns:ScheduleInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ScheduleInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="StartSchoolYear" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndSchoolYear" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="VisibleTypes" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HiddenTypes" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentWeek" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentPeriod" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="YearAllowed" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetScheduleInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sInfo" type="tns:ScheduleInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetScheduleInfoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoteCommand">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="cmdNo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="recursive" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoteCommandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemoteCommandResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTextForGUID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTextForGUIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTextForGUIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Logout">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogoutResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="MethodXml">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="verb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="version" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="inData" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MethodXmlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MethodXmlResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIDInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IDList" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIDInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetIDInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSchoolDataList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSchoolDataListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSchoolDataListResult" type="tns:ArrayOfSchoolData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSchoolData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SchoolData" nillable="true" type="tns:SchoolData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SchoolData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DatePublished" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateOpened" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateModified" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSchoolStatisticsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSchoolStatisticsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSchoolStatisticsListResult" type="tns:ArrayOfSchoolStatistics" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSchoolStatistics">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SchoolStatistics" nillable="true" type="tns:SchoolStatistics" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SchoolStatistics">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ServerName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PeakMemoryUsage" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="MemoryUsage" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="CPUTime" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="SchoolID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AssertCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AssertCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AssertCodeResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSchoolStatistics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSchoolStatisticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSchoolStatisticsResult" type="tns:SchoolStatistics" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetScheduleViewingSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="schoolId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetScheduleViewingSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetScheduleViewingSettingsResult" type="tns:ScheduleViewingPageSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ScheduleViewingPageSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ShutDown" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LogoUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HomepageUrl" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:ScheduleViewingMode" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrintQuality" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FreeText" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RememberPasswords" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrintMode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BackColor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ForeColor" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ScheduleViewingMode">
+        <s:restriction base="s:string">
+          <s:enumeration value="Normal" />
+          <s:enumeration value="Split" />
+          <s:enumeration value="Date" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SetScheduleViewingSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="viewingSettings" type="tns:ScheduleViewingPageSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetScheduleViewingSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GenerateSchoolId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="licenseNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateSchoolIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerateSchoolIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSchoolData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSchoolDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSchoolDataResult" type="tns:SchoolData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetURL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="typeOfURL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetURLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetURLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGroupContents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGroupContentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGroupContentsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUserResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="permission" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="level" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddUserResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetLoggedInUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLoggedInUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLoggedInUserResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="User">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddedBy" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Permission" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Level" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUserDataByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDataByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDataByNameResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDataResult" type="tns:ArrayOfUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ReloadSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReloadSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReloadSettingsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReloadFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReloadFilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReloadFilesResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="editFlags" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="permission" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="level" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditUserResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="d">
+        <s:complexType />
+      </s:element>
+      <s:element name="dResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveScheduleFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveScheduleFileResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RetrieveScheduleFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="schoolID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveScheduleFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveScheduleFileResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublishScheduleFile_End">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="cancel" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublishScheduleFile_EndResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSoapExceptionInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSoapExceptionInfoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PublishScheduleFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="barr" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublishScheduleFileResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PublishScheduleFile_Start">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateModified" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublishScheduleFile_StartResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PublishScheduleFile_CopyBytes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="barr" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublishScheduleFile_CopyBytesResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetErrorAsDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetErrorAsData" />
+  </wsdl:message>
+  <wsdl:message name="GetErrorAsDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetErrorAsDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetErrorAsStringSoapIn">
+    <wsdl:part name="parameters" element="tns:GetErrorAsString" />
+  </wsdl:message>
+  <wsdl:message name="GetErrorAsStringSoapOut">
+    <wsdl:part name="parameters" element="tns:GetErrorAsStringResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleFileAsXmlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetScheduleFileAsXml" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleFileAsXmlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetScheduleFileAsXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReportUserListChangeSoapIn">
+    <wsdl:part name="parameters" element="tns:ReportUserListChange" />
+  </wsdl:message>
+  <wsdl:message name="ReportUserListChangeSoapOut">
+    <wsdl:part name="parameters" element="tns:ReportUserListChangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsAsleepSoapIn">
+    <wsdl:part name="parameters" element="tns:IsAsleep" />
+  </wsdl:message>
+  <wsdl:message name="IsAsleepSoapOut">
+    <wsdl:part name="parameters" element="tns:IsAsleepResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStatisticsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetStatisticsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CurrentlyLoadingSoapIn">
+    <wsdl:part name="parameters" element="tns:CurrentlyLoading" />
+  </wsdl:message>
+  <wsdl:message name="CurrentlyLoadingSoapOut">
+    <wsdl:part name="parameters" element="tns:CurrentlyLoadingResponse" />
+  </wsdl:message>
+  <wsdl:message name="BackupFilesSoapIn">
+    <wsdl:part name="parameters" element="tns:BackupFiles" />
+  </wsdl:message>
+  <wsdl:message name="BackupFilesSoapOut">
+    <wsdl:part name="parameters" element="tns:BackupFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="MirrorSoapIn">
+    <wsdl:part name="parameters" element="tns:Mirror" />
+  </wsdl:message>
+  <wsdl:message name="MirrorSoapOut">
+    <wsdl:part name="parameters" element="tns:MirrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveFilesSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveFiles" />
+  </wsdl:message>
+  <wsdl:message name="SaveFilesSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTeachersForGroupOrClassSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTeachersForGroupOrClass" />
+  </wsdl:message>
+  <wsdl:message name="GetTeachersForGroupOrClassSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTeachersForGroupOrClassResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleIDListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetScheduleIDList" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleIDListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetScheduleIDListResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateScheduleSessionSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateScheduleSession" />
+  </wsdl:message>
+  <wsdl:message name="CreateScheduleSessionSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateScheduleSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetScheduleDataSoapIn">
+    <wsdl:part name="parameters" element="tns:SetScheduleData" />
+  </wsdl:message>
+  <wsdl:message name="SetScheduleDataSoapOut">
+    <wsdl:part name="parameters" element="tns:SetScheduleDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetScheduleData" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetScheduleDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWeekIDListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWeekIDList" />
+  </wsdl:message>
+  <wsdl:message name="GetWeekIDListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWeekIDListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetScheduleInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetScheduleInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetScheduleInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:SetScheduleInfo" />
+  </wsdl:message>
+  <wsdl:message name="SetScheduleInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:SetScheduleInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoteCommandSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoteCommand" />
+  </wsdl:message>
+  <wsdl:message name="RemoteCommandSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoteCommandResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTextForGUIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTextForGUID" />
+  </wsdl:message>
+  <wsdl:message name="GetTextForGUIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTextForGUIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSoapIn">
+    <wsdl:part name="parameters" element="tns:Logout" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSoapOut">
+    <wsdl:part name="parameters" element="tns:LogoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="MethodXmlSoapIn">
+    <wsdl:part name="parameters" element="tns:MethodXml" />
+  </wsdl:message>
+  <wsdl:message name="MethodXmlSoapOut">
+    <wsdl:part name="parameters" element="tns:MethodXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetIDInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetIDInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetIDInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetIDInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSchoolDataListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSchoolDataList" />
+  </wsdl:message>
+  <wsdl:message name="GetSchoolDataListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSchoolDataListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSchoolStatisticsListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSchoolStatisticsList" />
+  </wsdl:message>
+  <wsdl:message name="GetSchoolStatisticsListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSchoolStatisticsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="AssertCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:AssertCode" />
+  </wsdl:message>
+  <wsdl:message name="AssertCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:AssertCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSchoolStatisticsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSchoolStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetSchoolStatisticsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSchoolStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleViewingSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetScheduleViewingSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetScheduleViewingSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetScheduleViewingSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetScheduleViewingSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetScheduleViewingSettings" />
+  </wsdl:message>
+  <wsdl:message name="SetScheduleViewingSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetScheduleViewingSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerateSchoolIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerateSchoolId" />
+  </wsdl:message>
+  <wsdl:message name="GenerateSchoolIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateSchoolIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSchoolDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSchoolData" />
+  </wsdl:message>
+  <wsdl:message name="GetSchoolDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSchoolDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetURLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetURL" />
+  </wsdl:message>
+  <wsdl:message name="GetURLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetURLResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupContentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGroupContents" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupContentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGroupContentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddUserSoapIn">
+    <wsdl:part name="parameters" element="tns:AddUser" />
+  </wsdl:message>
+  <wsdl:message name="AddUserSoapOut">
+    <wsdl:part name="parameters" element="tns:AddUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLoggedInUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLoggedInUser" />
+  </wsdl:message>
+  <wsdl:message name="GetLoggedInUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLoggedInUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDataByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserDataByName" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDataByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserDataByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserData" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReloadSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:ReloadSettings" />
+  </wsdl:message>
+  <wsdl:message name="ReloadSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:ReloadSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReloadFilesSoapIn">
+    <wsdl:part name="parameters" element="tns:ReloadFiles" />
+  </wsdl:message>
+  <wsdl:message name="ReloadFilesSoapOut">
+    <wsdl:part name="parameters" element="tns:ReloadFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EditUserSoapIn">
+    <wsdl:part name="parameters" element="tns:EditUser" />
+  </wsdl:message>
+  <wsdl:message name="EditUserSoapOut">
+    <wsdl:part name="parameters" element="tns:EditUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="dSoapIn">
+    <wsdl:part name="parameters" element="tns:d" />
+  </wsdl:message>
+  <wsdl:message name="dSoapOut">
+    <wsdl:part name="parameters" element="tns:dResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveScheduleFileSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveScheduleFile" />
+  </wsdl:message>
+  <wsdl:message name="RemoveScheduleFileSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveScheduleFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveScheduleFileSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveScheduleFile" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveScheduleFileSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveScheduleFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="PublishScheduleFile_EndSoapIn">
+    <wsdl:part name="parameters" element="tns:PublishScheduleFile_End" />
+  </wsdl:message>
+  <wsdl:message name="PublishScheduleFile_EndSoapOut">
+    <wsdl:part name="parameters" element="tns:PublishScheduleFile_EndResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSoapExceptionInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSoapExceptionInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetSoapExceptionInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSoapExceptionInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="PublishScheduleFileSoapIn">
+    <wsdl:part name="parameters" element="tns:PublishScheduleFile" />
+  </wsdl:message>
+  <wsdl:message name="PublishScheduleFileSoapOut">
+    <wsdl:part name="parameters" element="tns:PublishScheduleFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="PublishScheduleFile_StartSoapIn">
+    <wsdl:part name="parameters" element="tns:PublishScheduleFile_Start" />
+  </wsdl:message>
+  <wsdl:message name="PublishScheduleFile_StartSoapOut">
+    <wsdl:part name="parameters" element="tns:PublishScheduleFile_StartResponse" />
+  </wsdl:message>
+  <wsdl:message name="PublishScheduleFile_CopyBytesSoapIn">
+    <wsdl:part name="parameters" element="tns:PublishScheduleFile_CopyBytes" />
+  </wsdl:message>
+  <wsdl:message name="PublishScheduleFile_CopyBytesSoapOut">
+    <wsdl:part name="parameters" element="tns:PublishScheduleFile_CopyBytesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ScheduleFileWebServiceSoap">
+    <wsdl:operation name="GetErrorAsData">
+      <wsdl:input message="tns:GetErrorAsDataSoapIn" />
+      <wsdl:output message="tns:GetErrorAsDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetErrorAsString">
+      <wsdl:input message="tns:GetErrorAsStringSoapIn" />
+      <wsdl:output message="tns:GetErrorAsStringSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleFileAsXml">
+      <wsdl:input message="tns:GetScheduleFileAsXmlSoapIn" />
+      <wsdl:output message="tns:GetScheduleFileAsXmlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportUserListChange">
+      <wsdl:input message="tns:ReportUserListChangeSoapIn" />
+      <wsdl:output message="tns:ReportUserListChangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsAsleep">
+      <wsdl:input message="tns:IsAsleepSoapIn" />
+      <wsdl:output message="tns:IsAsleepSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatistics">
+      <wsdl:input message="tns:GetStatisticsSoapIn" />
+      <wsdl:output message="tns:GetStatisticsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CurrentlyLoading">
+      <wsdl:input message="tns:CurrentlyLoadingSoapIn" />
+      <wsdl:output message="tns:CurrentlyLoadingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BackupFiles">
+      <wsdl:input message="tns:BackupFilesSoapIn" />
+      <wsdl:output message="tns:BackupFilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Mirror">
+      <wsdl:input message="tns:MirrorSoapIn" />
+      <wsdl:output message="tns:MirrorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveFiles">
+      <wsdl:input message="tns:SaveFilesSoapIn" />
+      <wsdl:output message="tns:SaveFilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeachersForGroupOrClass">
+      <wsdl:input message="tns:GetTeachersForGroupOrClassSoapIn" />
+      <wsdl:output message="tns:GetTeachersForGroupOrClassSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleIDList">
+      <wsdl:input message="tns:GetScheduleIDListSoapIn" />
+      <wsdl:output message="tns:GetScheduleIDListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateScheduleSession">
+      <wsdl:input message="tns:CreateScheduleSessionSoapIn" />
+      <wsdl:output message="tns:CreateScheduleSessionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetScheduleData">
+      <wsdl:input message="tns:SetScheduleDataSoapIn" />
+      <wsdl:output message="tns:SetScheduleDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleData">
+      <wsdl:input message="tns:GetScheduleDataSoapIn" />
+      <wsdl:output message="tns:GetScheduleDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWeekIDList">
+      <wsdl:input message="tns:GetWeekIDListSoapIn" />
+      <wsdl:output message="tns:GetWeekIDListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleInfo">
+      <wsdl:input message="tns:GetScheduleInfoSoapIn" />
+      <wsdl:output message="tns:GetScheduleInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetScheduleInfo">
+      <wsdl:input message="tns:SetScheduleInfoSoapIn" />
+      <wsdl:output message="tns:SetScheduleInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoteCommand">
+      <wsdl:input message="tns:RemoteCommandSoapIn" />
+      <wsdl:output message="tns:RemoteCommandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTextForGUID">
+      <wsdl:input message="tns:GetTextForGUIDSoapIn" />
+      <wsdl:output message="tns:GetTextForGUIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input message="tns:LogoutSoapIn" />
+      <wsdl:output message="tns:LogoutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MethodXml">
+      <wsdl:input message="tns:MethodXmlSoapIn" />
+      <wsdl:output message="tns:MethodXmlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIDInfo">
+      <wsdl:input message="tns:GetIDInfoSoapIn" />
+      <wsdl:output message="tns:GetIDInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSchoolDataList">
+      <wsdl:input message="tns:GetSchoolDataListSoapIn" />
+      <wsdl:output message="tns:GetSchoolDataListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSchoolStatisticsList">
+      <wsdl:input message="tns:GetSchoolStatisticsListSoapIn" />
+      <wsdl:output message="tns:GetSchoolStatisticsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AssertCode">
+      <wsdl:input message="tns:AssertCodeSoapIn" />
+      <wsdl:output message="tns:AssertCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSchoolStatistics">
+      <wsdl:input message="tns:GetSchoolStatisticsSoapIn" />
+      <wsdl:output message="tns:GetSchoolStatisticsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleViewingSettings">
+      <wsdl:input message="tns:GetScheduleViewingSettingsSoapIn" />
+      <wsdl:output message="tns:GetScheduleViewingSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetScheduleViewingSettings">
+      <wsdl:input message="tns:SetScheduleViewingSettingsSoapIn" />
+      <wsdl:output message="tns:SetScheduleViewingSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateSchoolId">
+      <wsdl:input message="tns:GenerateSchoolIdSoapIn" />
+      <wsdl:output message="tns:GenerateSchoolIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSchoolData">
+      <wsdl:input message="tns:GetSchoolDataSoapIn" />
+      <wsdl:output message="tns:GetSchoolDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetURL">
+      <wsdl:input message="tns:GetURLSoapIn" />
+      <wsdl:output message="tns:GetURLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupContents">
+      <wsdl:input message="tns:GetGroupContentsSoapIn" />
+      <wsdl:output message="tns:GetGroupContentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input message="tns:DeleteUserSoapIn" />
+      <wsdl:output message="tns:DeleteUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <wsdl:input message="tns:AddUserSoapIn" />
+      <wsdl:output message="tns:AddUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInUser">
+      <wsdl:input message="tns:GetLoggedInUserSoapIn" />
+      <wsdl:output message="tns:GetLoggedInUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDataByName">
+      <wsdl:input message="tns:GetUserDataByNameSoapIn" />
+      <wsdl:output message="tns:GetUserDataByNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserData">
+      <wsdl:input message="tns:GetUserDataSoapIn" />
+      <wsdl:output message="tns:GetUserDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReloadSettings">
+      <wsdl:input message="tns:ReloadSettingsSoapIn" />
+      <wsdl:output message="tns:ReloadSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReloadFiles">
+      <wsdl:input message="tns:ReloadFilesSoapIn" />
+      <wsdl:output message="tns:ReloadFilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditUser">
+      <wsdl:input message="tns:EditUserSoapIn" />
+      <wsdl:output message="tns:EditUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="d">
+      <wsdl:input message="tns:dSoapIn" />
+      <wsdl:output message="tns:dSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveScheduleFile">
+      <wsdl:input message="tns:RemoveScheduleFileSoapIn" />
+      <wsdl:output message="tns:RemoveScheduleFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveScheduleFile">
+      <wsdl:input message="tns:RetrieveScheduleFileSoapIn" />
+      <wsdl:output message="tns:RetrieveScheduleFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PublishScheduleFile_End">
+      <wsdl:input message="tns:PublishScheduleFile_EndSoapIn" />
+      <wsdl:output message="tns:PublishScheduleFile_EndSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSoapExceptionInfo">
+      <wsdl:input message="tns:GetSoapExceptionInfoSoapIn" />
+      <wsdl:output message="tns:GetSoapExceptionInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PublishScheduleFile">
+      <wsdl:input message="tns:PublishScheduleFileSoapIn" />
+      <wsdl:output message="tns:PublishScheduleFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PublishScheduleFile_Start">
+      <wsdl:input message="tns:PublishScheduleFile_StartSoapIn" />
+      <wsdl:output message="tns:PublishScheduleFile_StartSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PublishScheduleFile_CopyBytes">
+      <wsdl:input message="tns:PublishScheduleFile_CopyBytesSoapIn" />
+      <wsdl:output message="tns:PublishScheduleFile_CopyBytesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ScheduleFileWebServiceSoap" type="tns:ScheduleFileWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetErrorAsData">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetErrorAsData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetErrorAsString">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetErrorAsString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleFileAsXml">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetScheduleFileAsXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportUserListChange">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/ReportUserListChange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAsleep">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/IsAsleep" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatistics">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CurrentlyLoading">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/CurrentlyLoading" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackupFiles">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/BackupFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Mirror">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/Mirror" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFiles">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/SaveFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeachersForGroupOrClass">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetTeachersForGroupOrClass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleIDList">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetScheduleIDList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateScheduleSession">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/CreateScheduleSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetScheduleData">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/SetScheduleData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleData">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetScheduleData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWeekIDList">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetWeekIDList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleInfo">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetScheduleInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetScheduleInfo">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/SetScheduleInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteCommand">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/RemoteCommand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextForGUID">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetTextForGUID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/Logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MethodXml">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/MethodXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIDInfo">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetIDInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchoolDataList">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetSchoolDataList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchoolStatisticsList">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetSchoolStatisticsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssertCode">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/AssertCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchoolStatistics">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetSchoolStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleViewingSettings">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetScheduleViewingSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetScheduleViewingSettings">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/SetScheduleViewingSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateSchoolId">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GenerateSchoolId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchoolData">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetSchoolData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetURL">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetURL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupContents">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetGroupContents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/AddUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInUser">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetLoggedInUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDataByName">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetUserDataByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserData">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetUserData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReloadSettings">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/ReloadSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReloadFiles">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/ReloadFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditUser">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/EditUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="d">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/d" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveScheduleFile">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/RemoveScheduleFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveScheduleFile">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/RetrieveScheduleFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PublishScheduleFile_End">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/PublishScheduleFile_End" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSoapExceptionInfo">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/GetSoapExceptionInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PublishScheduleFile">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/PublishScheduleFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PublishScheduleFile_Start">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/PublishScheduleFile_Start" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PublishScheduleFile_CopyBytes">
+      <soap:operation soapAction="http://www.novasoftware.se/webservices/PublishScheduleFile_CopyBytes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ScheduleFileWebServiceSoap12" type="tns:ScheduleFileWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetErrorAsData">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetErrorAsData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetErrorAsString">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetErrorAsString" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleFileAsXml">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetScheduleFileAsXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportUserListChange">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/ReportUserListChange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAsleep">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/IsAsleep" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatistics">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetStatistics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CurrentlyLoading">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/CurrentlyLoading" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackupFiles">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/BackupFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Mirror">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/Mirror" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFiles">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/SaveFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeachersForGroupOrClass">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetTeachersForGroupOrClass" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleIDList">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetScheduleIDList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateScheduleSession">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/CreateScheduleSession" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetScheduleData">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/SetScheduleData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleData">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetScheduleData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWeekIDList">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetWeekIDList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleInfo">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetScheduleInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetScheduleInfo">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/SetScheduleInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoteCommand">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/RemoteCommand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextForGUID">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetTextForGUID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/Logout" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MethodXml">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/MethodXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIDInfo">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetIDInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchoolDataList">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetSchoolDataList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchoolStatisticsList">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetSchoolStatisticsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssertCode">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/AssertCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchoolStatistics">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetSchoolStatistics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetScheduleViewingSettings">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetScheduleViewingSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetScheduleViewingSettings">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/SetScheduleViewingSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateSchoolId">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GenerateSchoolId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchoolData">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetSchoolData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetURL">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetURL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupContents">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetGroupContents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/AddUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoggedInUser">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetLoggedInUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDataByName">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetUserDataByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserData">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetUserData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReloadSettings">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/ReloadSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReloadFiles">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/ReloadFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditUser">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/EditUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="d">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/d" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveScheduleFile">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/RemoveScheduleFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveScheduleFile">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/RetrieveScheduleFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PublishScheduleFile_End">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/PublishScheduleFile_End" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSoapExceptionInfo">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/GetSoapExceptionInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PublishScheduleFile">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/PublishScheduleFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PublishScheduleFile_Start">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/PublishScheduleFile_Start" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PublishScheduleFile_CopyBytes">
+      <soap12:operation soapAction="http://www.novasoftware.se/webservices/PublishScheduleFile_CopyBytes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ScheduleFileWebService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Novaschem Web Service</wsdl:documentation>
+    <wsdl:port name="ScheduleFileWebServiceSoap" binding="tns:ScheduleFileWebServiceSoap">
+      <soap:address location="http://www.novasoftware.se/schedulewebservice/service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ScheduleFileWebServiceSoap12" binding="tns:ScheduleFileWebServiceSoap12">
+      <soap12:address location="http://www.novasoftware.se/schedulewebservice/service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
