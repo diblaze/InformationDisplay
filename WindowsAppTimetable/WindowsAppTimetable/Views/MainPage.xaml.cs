@@ -30,7 +30,8 @@ namespace Sample.Views
                 ScheduleIds.Clear();
             }
 
-            await ScheduleFacade.PopulateScheduleIdsAsync(ScheduleIds);
+            //await ScheduleFacade.PopulateScheduleIdsAsync(ScheduleIds);
+            //await ScheduleFacade.DownloadSpecificScheduleAsync("9A2C3C57-CC60-4AF2-8F2E-DA599A7F723E");
 
             prDownload.IsActive = false;
             prDownload.Visibility = Visibility.Collapsed;

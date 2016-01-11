@@ -32,5 +32,31 @@ namespace WindowsAppTimetable
             //Return list.
             return scheduleIdList;
         }
+
+        public static async Task<ScheduleData> DownloadSpecificScheduleAsync(string classID)
+        {
+            var client = new ScheduleFileWebServiceSoapClient();
+            GetScheduleDataResponse schedule = await client.GetScheduleDataAsync(false,
+                ScheduleImageFileFormat.Png,
+                SchoolId,
+                1,
+                1,
+                classID,
+                "",
+                "4",
+                0,
+                0,
+                600,
+                600,
+                1200,
+                1200,
+                false,
+                32,
+                false,
+                false,
+                false);
+
+            return null;
+        } 
     }
 }
