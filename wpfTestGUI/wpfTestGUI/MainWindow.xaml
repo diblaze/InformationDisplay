@@ -7,7 +7,7 @@
         Title="InformationDisplay" Height="1440" Width="2160" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         WindowState="Maximized">
     <Grid Background="#074ab9">
-        <ListBox Margin="97,40,1528.667,40"  Background="#379bf9" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+        <ListBox Margin="97,40,-57.714,40.429"  Background="#379bf9" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Resources>

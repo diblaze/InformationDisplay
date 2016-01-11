@@ -219,9 +219,9 @@ namespace wpfTestGUI
 
             StringBuilder sb = new StringBuilder();
             sb.Append(
-                @"http://www.novasoftware.se/ImgGen/schedulegenerator.aspx?format=png&schoolid=83020/sv-se&type=1&id={" );
-            sb.Append( urlId );
-            sb.Append( @"}&period=&" );
+                @"http://www.novasoftware.se/ImgGen/schedulegenerator.aspx?format=png&schoolid=83020/sv-se&type=1&id=" );
+            sb.Append( "TE13" );
+            sb.Append( @"&period=&" );
             sb.Append( "week=" + week + "&" );
             sb.Append(
                 "mode=0&printer=0&colors=32&head=0&clock=0&foot=0&day=0&width=1442&height=1240&maxwidth=1442&maxheight=1240)" );
