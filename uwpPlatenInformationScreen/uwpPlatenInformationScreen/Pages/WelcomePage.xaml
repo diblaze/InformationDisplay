@@ -18,7 +18,7 @@
                 <TextBlock
                     Text="I menyn till vänster kan Ni välja att se scheman, karta över skolan och kontaktuppgifter!"
                     FontSize="32"
-                    TextAlignment="Center" />
+                    TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" />
                 <!-- End of tutorial text -->
                 
                 <RelativePanel Name="RelativePanelWelcome">
@@ -31,18 +31,19 @@
 
 
                     <!-- Start of food text -->
-                    <Image Name="imageFood"
+                    <Image Name="ImageFood"
                            Source="../Assets/ForkKnifeLogo.png"
-                           Width="360"
+                           Width="240"
                            RelativePanel.AlignHorizontalCenterWithPanel="True"
                            Margin="0 40 0 0" />
                     <!-- Placeholder text will change to food information -->
-                    <TextBlock Name="textTodaysFood"
+                    <TextBlock Name="TextTodaysFood"
                                Text="Placeholder Text"
                                FontSize="36"
                                RelativePanel.AlignHorizontalCenterWithPanel="True"
-                               RelativePanel.Below="imageFood"
-                               Margin="0 20 0 0" />
+                               RelativePanel.Below="ImageFood"
+                               Margin="0 20 0 0" 
+                               Style="{StaticResource BodyTextBlockStyle}"/>
                     <!-- End of food text -->
 
 

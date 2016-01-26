@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Controls;
+using uwpPlatenInformationScreen.Models;
 
 namespace uwpPlatenInformationScreen.Pages
 {
@@ -8,15 +10,18 @@ namespace uwpPlatenInformationScreen.Pages
     /// </summary>
     public sealed partial class WelcomePage : Page
     {
+        private ObservableCollection<RootObject> lunchMenu; 
         public WelcomePage()
         {
             this.InitializeComponent();
             LoadLunchMenu();
+            lunchMenu = new ObservableCollection<RootObject>();
         }
 
         private async void LoadLunchMenu()
         {
-            await LunchManager.GetHtmlDataFromMashie();
+            //var todaysLunch = await LunchManager.GetTodaysLunch(lunchMenu);
+
         }
     }
 }

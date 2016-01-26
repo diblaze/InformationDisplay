@@ -1,7 +1,6 @@
-﻿using Intense.Presentation;
-using System;
-using System.Linq;
+﻿using System.Linq;
 using Windows.UI.Xaml.Controls;
+using Intense.Presentation;
 using uwpPlatenInformationScreen.Pages;
 using uwpPlatenInformationScreen.Presentation;
 
@@ -11,30 +10,28 @@ namespace uwpPlatenInformationScreen
     {
         public Shell()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             var vm = new ShellViewModel();
-            vm.TopItems.Add(new NavigationItem { Icon = "", DisplayName = "Welcome", PageType = typeof(WelcomePage) });
-            //vm.TopItems.Add(new NavigationItem { Icon = "", DisplayName = "Page 1", PageType = typeof(Page1) });
+            vm.TopItems.Add(new NavigationItem {Icon = "", DisplayName = "Allmänt", PageType = typeof (WelcomePage)});
+            vm.TopItems.Add(new NavigationItem {Icon = "", DisplayName = "Schema", PageType = typeof (TimetablePage)});
             //vm.TopItems.Add(new NavigationItem { Icon = "", DisplayName = "Page 2", PageType = typeof(Page2) });
             //vm.TopItems.Add(new NavigationItem { Icon = "", DisplayName = "Page 3", PageType = typeof(Page3) });
 
-            vm.BottomItems.Add(new NavigationItem { Icon = "", DisplayName = "Settings", PageType = typeof(SettingsPage) });
+            vm.BottomItems.Add(new NavigationItem {Icon = "", DisplayName = "Settings", PageType = typeof (SettingsPage)});
 
             // select the first top item
             vm.SelectedItem = vm.TopItems.First();
 
-            this.ViewModel = vm;
+            ViewModel = vm;
         }
 
-        public ShellViewModel ViewModel { get; private set; }
-
-        public Frame RootFrame
+        public ShellViewModel ViewModel
         {
-            get
-            {
-                return this.Frame;
-            }
+            get;
+            private set;
         }
+
+        public Frame RootFrame => Frame;
     }
 }
