@@ -96,77 +96,29 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LunchManager.cs" />
+    <Compile Include="Managers\LunchManager.cs" />
     <Compile Include="Models\JsonDataModel.cs" />
     <Compile Include="Pages\TimetablePage.xaml.cs">
       <DependentUpon>TimetablePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\Novasoftware\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pages\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    <Compile Include="Pages\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\ShellViewModel.cs" />
-    <Compile Include="TimetableManager.cs" />
+    <Compile Include="Managers\TimetableManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
-    <None Include="Service References\Novasoftware\service.wsdl" />
-    <None Include="Service References\Novasoftware\uwpPlatenInformationScreen.Novasoftware.ErrorData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Novasoftware\uwpPlatenInformationScreen.Novasoftware.GetScheduleDataResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Novasoftware\uwpPlatenInformationScreen.Novasoftware.GetScheduleFileAsXmlResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Novasoftware\uwpPlatenInformationScreen.Novasoftware.PublishScheduleFileResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Novasoftware\uwpPlatenInformationScreen.Novasoftware.PublishScheduleFile_CopyBytesResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Novasoftware\uwpPlatenInformationScreen.Novasoftware.RetrieveScheduleFileResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Novasoftware\uwpPlatenInformationScreen.Novasoftware.ScheduleID.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Novasoftware\uwpPlatenInformationScreen.Novasoftware.ScheduleInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Novasoftware\uwpPlatenInformationScreen.Novasoftware.ScheduleViewingPageSettings.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Novasoftware\uwpPlatenInformationScreen.Novasoftware.SchoolData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Novasoftware\uwpPlatenInformationScreen.Novasoftware.SchoolStatistics.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Novasoftware\uwpPlatenInformationScreen.Novasoftware.User.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Novasoftware\uwpPlatenInformationScreen.Novasoftware.WebServiceStatistics.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Novasoftware\uwpPlatenInformationScreen.Novasoftware.WeekID.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="uwpPlatenInformationScreen_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -179,13 +131,6 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-    <None Include="Service References\Novasoftware\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\Novasoftware\configuration.svcinfo" />
-    <None Include="Service References\Novasoftware\configuration91.svcinfo" />
-    <None Include="Service References\Novasoftware\service.disco" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -200,7 +145,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\SettingsPage.xaml">
+    <Page Include="Pages\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -216,9 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\Novasoftware\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

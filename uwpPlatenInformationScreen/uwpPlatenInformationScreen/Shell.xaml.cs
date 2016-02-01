@@ -18,7 +18,7 @@ namespace uwpPlatenInformationScreen
             //vm.TopItems.Add(new NavigationItem { Icon = "", DisplayName = "Page 2", PageType = typeof(Page2) });
             //vm.TopItems.Add(new NavigationItem { Icon = "", DisplayName = "Page 3", PageType = typeof(Page3) });
 
-            vm.BottomItems.Add(new NavigationItem {Icon = "", DisplayName = "Settings", PageType = typeof (SettingsPage)});
+            vm.BottomItems.Add(new NavigationItem {Icon = "", DisplayName = "About this screen", PageType = typeof (AboutPage)});
 
             // select the first top item
             vm.SelectedItem = vm.TopItems.First();

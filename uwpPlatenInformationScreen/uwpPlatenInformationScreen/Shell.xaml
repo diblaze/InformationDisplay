@@ -1,15 +1,14 @@
-﻿<UserControl
-    x:Class="uwpPlatenInformationScreen.Shell"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:intense="using:Intense.UI.Controls"
-    xmlns:local="using:uwpPlatenInformationScreen"
-    xmlns:presentation="using:uwpPlatenInformationScreen.Presentation"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+﻿<UserControl x:Class="uwpPlatenInformationScreen.Shell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:intense="using:Intense.UI.Controls"
+             xmlns:local="using:uwpPlatenInformationScreen"
+             xmlns:presentation="using:uwpPlatenInformationScreen.Presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -17,14 +16,16 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <intense:PageHeader x:Name="NarrowHeader" 
+        <intense:PageHeader x:Name="NarrowHeader"
                             Background="{ThemeResource SystemChromeLowColor}"
                             Icon="&#xE700;"
                             IconButtonStyle="{StaticResource IconButtonStyle}"
                             IconCommand="{x:Bind ViewModel.ToggleSplitViewPaneCommand}"
                             Title="{x:Bind ViewModel.SelectedItem.DisplayNameUppercase, Mode=OneWay}" />
 
-        <SplitView x:Name="SplitView" Grid.Row="1" IsPaneOpen="{x:Bind ViewModel.IsSplitViewPaneOpen, Mode=TwoWay}" >
+        <SplitView x:Name="SplitView"
+                   Grid.Row="1"
+                   IsPaneOpen="{x:Bind ViewModel.IsSplitViewPaneOpen, Mode=TwoWay}">
             <SplitView.Pane>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -34,9 +35,13 @@
                     </Grid.RowDefinitions>
 
                     <!-- pane header -->
-                    <StackPanel x:Name="PaneHeader" Orientation="Horizontal">
-                        <Button Content="&#xE700;" Command="{x:Bind ViewModel.ToggleSplitViewPaneCommand}" Style="{StaticResource IconButtonStyle}"/>
-                        <TextBlock Text="Platen" Style="{StaticResource PageHeaderTitleTextBlockStyle}" />
+                    <StackPanel x:Name="PaneHeader"
+                                Orientation="Horizontal">
+                        <Button Content="&#xE700;"
+                                Command="{x:Bind ViewModel.ToggleSplitViewPaneCommand}"
+                                Style="{StaticResource IconButtonStyle}" />
+                        <TextBlock Text="Platen"
+                                   Style="{StaticResource PageHeaderTitleTextBlockStyle}" />
                     </StackPanel>
 
                     <!-- top menu-->
@@ -53,7 +58,8 @@
                 </Grid>
             </SplitView.Pane>
             <SplitView.Content>
-                <intense:ContentFrame x:Name="Frame" SourcePageType="{x:Bind ViewModel.SelectedPageType, Mode=TwoWay}">
+                <intense:ContentFrame x:Name="Frame"
+                                      SourcePageType="{x:Bind ViewModel.SelectedPageType, Mode=TwoWay}">
                     <intense:ContentFrame.ContentTransitions>
                         <TransitionCollection>
                             <NavigationThemeTransition>
@@ -72,10 +78,14 @@
                         <AdaptiveTrigger MinWindowWidth="1024" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="SplitView.DisplayMode" Value="CompactInline" />
-                        <Setter Target="SplitView.IsPaneOpen" Value="True" />
-                        <Setter Target="NarrowHeader.Visibility" Value="Collapsed" />
-                        <Setter Target="PaneHeader.Visibility" Value="Visible" />
+                        <Setter Target="SplitView.DisplayMode"
+                                Value="CompactInline" />
+                        <Setter Target="SplitView.IsPaneOpen"
+                                Value="True" />
+                        <Setter Target="NarrowHeader.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="PaneHeader.Visibility"
+                                Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="MediumState">
@@ -83,11 +93,16 @@
                         <AdaptiveTrigger MinWindowWidth="720" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="SplitView.DisplayMode" Value="CompactOverlay" />
-                        <Setter Target="SplitView.IsPaneOpen" Value="False" />
-                        <Setter Target="SplitView.OpenPaneLength" Value="256" />
-                        <Setter Target="NarrowHeader.Visibility" Value="Collapsed" />
-                        <Setter Target="PaneHeader.Visibility" Value="Visible" />
+                        <Setter Target="SplitView.DisplayMode"
+                                Value="CompactOverlay" />
+                        <Setter Target="SplitView.IsPaneOpen"
+                                Value="False" />
+                        <Setter Target="SplitView.OpenPaneLength"
+                                Value="256" />
+                        <Setter Target="NarrowHeader.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="PaneHeader.Visibility"
+                                Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NarrowState">
@@ -95,11 +110,16 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="NarrowHeader.Visibility" Value="Visible" />
-                        <Setter Target="PaneHeader.Visibility" Value="Collapsed" />
-                        <Setter Target="SplitView.OpenPaneLength" Value="256" />
-                        <Setter Target="Frame.Padding" Value="12" />
-                        <Setter Target="Frame.PageTitleVisibility" Value="Collapsed" />
+                        <Setter Target="NarrowHeader.Visibility"
+                                Value="Visible" />
+                        <Setter Target="PaneHeader.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="SplitView.OpenPaneLength"
+                                Value="256" />
+                        <Setter Target="Frame.Padding"
+                                Value="12" />
+                        <Setter Target="Frame.PageTitleVisibility"
+                                Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

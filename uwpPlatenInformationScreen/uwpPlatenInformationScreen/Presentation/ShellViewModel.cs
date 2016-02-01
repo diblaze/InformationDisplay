@@ -1,42 +1,53 @@
-﻿using Intense.Presentation;
-using System;
-using System.Collections.ObjectModel;
+﻿using System;
 using System.Linq;
 using System.Windows.Input;
 using Windows.UI.Xaml;
+using Intense.Presentation;
 
 namespace uwpPlatenInformationScreen.Presentation
 {
     public class ShellViewModel : NotifyPropertyChanged
     {
-        private NavigationItemCollection topItems = new NavigationItemCollection();
-        private NavigationItem selectedTopItem;
-        private NavigationItemCollection bottomItems = new NavigationItemCollection();
-        private NavigationItem selectedBottomItem;
         private bool isSplitViewPaneOpen;
+        private NavigationItem selectedBottomItem;
+        private NavigationItem selectedTopItem;
 
         public ShellViewModel()
         {
-            this.ToggleSplitViewPaneCommand = new RelayCommand(() => this.IsSplitViewPaneOpen = !this.IsSplitViewPaneOpen);
+            ToggleSplitViewPaneCommand = new RelayCommand(() => IsSplitViewPaneOpen = !IsSplitViewPaneOpen);
 
             // open splitview pane in wide state
-            this.IsSplitViewPaneOpen = IsWideState();
+            IsSplitViewPaneOpen = IsWideState();
         }
 
-        public ICommand ToggleSplitViewPaneCommand { get; private set; }
+        public ICommand ToggleSplitViewPaneCommand
+        {
+            get;
+            private set;
+        }
 
         public bool IsSplitViewPaneOpen
         {
-            get { return this.isSplitViewPaneOpen; }
-            set { Set(ref this.isSplitViewPaneOpen, value); }
+            get
+            {
+                return isSplitViewPaneOpen;
+            }
+            set
+            {
+                Set(ref isSplitViewPaneOpen, value);
+            }
         }
 
         public NavigationItem SelectedTopItem
         {
-            get { return this.selectedTopItem; }
+            get
+            {
+                return selectedTopItem;
+            }
             set
             {
-                if (Set(ref this.selectedTopItem, value) && value != null) {
+                if (Set(ref selectedTopItem, value) && value != null)
+                {
                     OnSelectedItemChanged(true);
                 }
             }
@@ -44,10 +55,14 @@ namespace uwpPlatenInformationScreen.Presentation
 
         public NavigationItem SelectedBottomItem
         {
-            get { return this.selectedBottomItem; }
+            get
+            {
+                return selectedBottomItem;
+            }
             set
             {
-                if (Set(ref this.selectedBottomItem, value) && value != null) {
+                if (Set(ref selectedBottomItem, value) && value != null)
+                {
                     OnSelectedItemChanged(false);
                 }
             }
@@ -55,11 +70,14 @@ namespace uwpPlatenInformationScreen.Presentation
 
         public NavigationItem SelectedItem
         {
-            get { return this.selectedTopItem ?? this.selectedBottomItem; }
+            get
+            {
+                return selectedTopItem ?? selectedBottomItem;
+            }
             set
             {
-                this.SelectedTopItem = this.topItems.FirstOrDefault(m => m == value);
-                this.SelectedBottomItem = this.bottomItems.FirstOrDefault(m => m == value);
+                SelectedTopItem = TopItems.FirstOrDefault(m => m == value);
+                SelectedBottomItem = BottomItems.FirstOrDefault(m => m == value);
             }
         }
 
@@ -67,40 +85,43 @@ namespace uwpPlatenInformationScreen.Presentation
         {
             get
             {
-                return this.SelectedItem?.PageType;
+                return SelectedItem?.PageType;
             }
             set
             {
                 // select associated menu item
-                this.SelectedTopItem = this.topItems.FirstOrDefault(m => m.PageType == value);
-                this.SelectedBottomItem = this.bottomItems.FirstOrDefault(m => m.PageType == value);
+                SelectedTopItem = TopItems.FirstOrDefault(m => m.PageType == value);
+                SelectedBottomItem = BottomItems.FirstOrDefault(m => m.PageType == value);
             }
         }
 
         public NavigationItemCollection TopItems
         {
-            get { return this.topItems; }
-        }
+            get;
+        } = new NavigationItemCollection();
 
         public NavigationItemCollection BottomItems
         {
-            get { return this.bottomItems; }
-        }
+            get;
+        } = new NavigationItemCollection();
 
         private void OnSelectedItemChanged(bool top)
         {
-            if (top) {
-                this.SelectedBottomItem = null;
+            if (top)
+            {
+                SelectedBottomItem = null;
             }
-            else {
-                this.SelectedTopItem = null;
+            else
+            {
+                SelectedTopItem = null;
             }
             OnPropertyChanged("SelectedItem");
             OnPropertyChanged("SelectedPageType");
 
             // auto-close split view pane (only when not in widestate)
-            if (!IsWideState()) {
-                this.IsSplitViewPaneOpen = false;
+            if (!IsWideState())
+            {
+                IsSplitViewPaneOpen = false;
             }
         }
 

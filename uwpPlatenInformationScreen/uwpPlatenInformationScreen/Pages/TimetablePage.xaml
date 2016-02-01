@@ -14,12 +14,25 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <ComboBox PlaceholderText="Välj klass"
-                  Width="150"
-                  Margin="20"
-                  Name="ComboBoxChooseTimetable"
-                  Grid.Row="0"
-                  SelectionChanged="ComboBoxChooseTimetable_OnSelectionChanged" />
+        <RelativePanel Background="LightGray">
+
+            <TextBlock Name="TextChooseClassTitle"
+                       Margin="20 0 0 0 "
+                       Text="Välj din klass i listan till höger!"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       FontSize="36"
+                       RelativePanel.AlignVerticalCenterWithPanel="True" />
+
+            <ComboBox PlaceholderText="Välj klass"
+                      Width="150"
+                      Height="35"
+                      Margin="20"
+                      Name="ComboBoxChooseTimetable"
+                      SelectionChanged="ComboBoxChooseTimetable_OnSelectionChanged"
+                      RelativePanel.RightOf="TextChooseClassTitle"
+                      RelativePanel.AlignVerticalCenterWithPanel="True" />
+        </RelativePanel>
+
         <Canvas Name="ImageCanvas"
                 Grid.Row="1"
                 Height="{Binding ElementName=MainGrid, Path=ActualHeight}"

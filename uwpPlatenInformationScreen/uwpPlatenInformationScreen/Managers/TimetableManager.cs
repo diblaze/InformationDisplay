@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
+using Windows.Graphics.Imaging;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace winAppInfoScreen
+namespace uwpPlatenInformationScreen.Managers
 {
     /// <summary>
-    ///     Because of NovaSoftware not allowing me to use their API, I need to make my own workaround.
+    ///     Because of NovaSoftware not allowing me to use their API, I needed to make my own workaround.
     ///     This class will take care of downloading and showing timetables.
     /// </summary>
     public class TimetableManager
@@ -41,6 +44,7 @@ namespace winAppInfoScreen
         /// <returns></returns>
         public static async Task<BitmapImage> GetTimetable(string classToDownload, double canvasHeight, double canvasWidth)
         {
+            //get week number
             int week = GetWeekNumber();
 
             //using string interpolation to format the request url
@@ -51,21 +55,90 @@ namespace winAppInfoScreen
 
             //get location to Cache Folder to check if schedule is already downloaded
             StorageFolder localCache = ApplicationData.Current.LocalCacheFolder;
-            var timetableFile = (StorageFile) await localCache.TryGetItemAsync(classToDownload + ".png");
+            //delete all timetables from earlier weeks
+            await DeleteOldTimetables(localCache, week);
+            //is the timetable already downloaded?
+            var timetableFile = (StorageFile) await localCache.TryGetItemAsync(classToDownload + ".Week " + week + ".png");
 
             //change TimetableImage to already downloaded timetable image (if we do not need to download new)
             if (timetableFile != null)
             {
-                //TODO: Add checks for old images and faulty resized images.
+                bool downloadNew = false;
                 var oldImage = new BitmapImage(new Uri(timetableFile.Path));
-                return oldImage;
+
+                //Check if the old image has bad dimensions.
+                downloadNew = await CheckIfBadDimensions(canvasHeight, timetableFile);
+
+                if (!downloadNew)
+                {
+                    return oldImage;
+                }
             }
 
             await DownloadImageAsync(classToDownload, urlToDownload, localCache);
 
             //change TimetableImage to downloaded timetable image
-            var image = new BitmapImage(new Uri(localCache.Path + "/" + classToDownload + ".png"));
+            var image = new BitmapImage(new Uri(localCache.Path + "/" + classToDownload + ".Week " + week + ".png"));
             return image;
+        }
+
+        /// <summary>
+        ///     Deletes all old timetables.
+        /// </summary>
+        /// <param name="localCache"><c>Local cache</c> folder</param>
+        /// <param name="week">Current <c>week number</c></param>
+        /// <returns></returns>
+        private static async Task DeleteOldTimetables(IStorageFolder localCache, int week)
+        {
+            var filesInFolder = await localCache.GetFilesAsync();
+            foreach (StorageFile file in filesInFolder.Where(file => !file.Name.Contains(".Week " + week)))
+            {
+                await file.DeleteAsync();
+            }
+        }
+
+        /// <summary>
+        ///     Checks if the current timetable image has the wrong dimensions.
+        /// </summary>
+        /// <param name="canvasHeight">Height of the <c>canvas</c></param>
+        /// <param name="timetableFile">
+        ///     <c>Timetable image</c>
+        /// </param>
+        /// <returns></returns>
+        private static async Task<bool> CheckIfBadDimensions(double canvasHeight, IStorageFile timetableFile)
+        {
+            bool downloadNew = false;
+            //Bitmap decoder to read width and height from PNG.
+            BitmapDecoder bitmapDecoder = null;
+            try
+            {
+                //Open the file async
+                using (IRandomAccessStream stream = await timetableFile.OpenAsync(FileAccessMode.Read))
+                {
+                    bitmapDecoder = await BitmapDecoder.CreateAsync(stream);
+                }
+            }
+                //Sometimes do not work, can't figure out what the problem is. This "catch" helps me avoid crashes.
+            catch (Exception)
+            {
+                // ignored
+            }
+
+            if (bitmapDecoder != null)
+            {
+                //If the image does not have the same height as the canvas, then download new one
+                if (bitmapDecoder.PixelHeight != canvasHeight)
+                {
+                    downloadNew = true;
+                }
+            }
+            //if our Try Catch failed, then just download new image either way.
+            else
+            {
+                downloadNew = true;
+            }
+
+            return downloadNew;
         }
 
         /// <summary>
@@ -77,12 +150,16 @@ namespace winAppInfoScreen
         /// <returns></returns>
         private static async Task DownloadImageAsync(string classToDownload, string urlToDownload, StorageFolder localCache)
         {
+            //get week number
+            int week = GetWeekNumber();
+
             //create uri from Url
             var uri = new Uri(urlToDownload);
 
             //create file to write to
             StorageFile downloadedTimetable =
-                await localCache.CreateFileAsync(classToDownload + ".png", CreationCollisionOption.ReplaceExisting);
+                await
+                localCache.CreateFileAsync(classToDownload + ".Week " + week + ".png", CreationCollisionOption.ReplaceExisting);
 
             //download image
             var downloader = new BackgroundDownloader();
