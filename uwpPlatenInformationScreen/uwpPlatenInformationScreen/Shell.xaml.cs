@@ -15,8 +15,7 @@ namespace uwpPlatenInformationScreen
             var vm = new ShellViewModel();
             vm.TopItems.Add(new NavigationItem {Icon = "", DisplayName = "Allmänt", PageType = typeof (WelcomePage)});
             vm.TopItems.Add(new NavigationItem {Icon = "", DisplayName = "Schema", PageType = typeof (TimetablePage)});
-            //vm.TopItems.Add(new NavigationItem { Icon = "", DisplayName = "Page 2", PageType = typeof(Page2) });
-            //vm.TopItems.Add(new NavigationItem { Icon = "", DisplayName = "Page 3", PageType = typeof(Page3) });
+            vm.TopItems.Add(new NavigationItem {Icon = "", DisplayName = "Hitta runt", PageType = typeof (Map)});
 
             vm.BottomItems.Add(new NavigationItem {Icon = "", DisplayName = "About this screen", PageType = typeof (AboutPage)});
 

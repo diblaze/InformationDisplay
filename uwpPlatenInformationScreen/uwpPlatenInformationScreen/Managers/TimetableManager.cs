@@ -17,9 +17,11 @@ namespace uwpPlatenInformationScreen.Managers
     public class TimetableManager
     {
         /// <summary>
-        ///     Gets the current week number.
+        /// Gets the current week number.
         /// </summary>
-        /// <returns>Current week number</returns>
+        /// <returns>
+        /// Current week number
+        /// </returns>
         private static int GetWeekNumber()
         {
             //get todays date to calculate week
@@ -31,17 +33,14 @@ namespace uwpPlatenInformationScreen.Managers
             return weekNum;
         }
 
+
         /// <summary>
-        ///     Downloads timetable if it is not already downloaded, or if the downloaded timetable has expired, or if the
-        ///     downloaded timetable has wrong dimensions.
+        /// Gets the timetable.
         /// </summary>
-        /// <param name="classToDownload"><c>Id</c> of the class to download.</param>
-        /// <param name="canvasHeight">
-        ///     <c>Height</c> of the page (substract <c>100</c> from this value to account for the different
-        ///     rows)
-        /// </param>
-        /// <param name="canvasWidth"><c>Width</c> of the page (actual value)</param>
-        /// <returns></returns>
+        /// <param name="classToDownload">The class to download.</param>
+        /// <param name="canvasHeight">Height of the canvas.</param>
+        /// <param name="canvasWidth">Width of the canvas.</param>
+        /// <returns>A bitmap image</returns>
         public static async Task<BitmapImage> GetTimetable(string classToDownload, double canvasHeight, double canvasWidth)
         {
             //get week number
@@ -82,12 +81,13 @@ namespace uwpPlatenInformationScreen.Managers
             return image;
         }
 
+
         /// <summary>
-        ///     Deletes all old timetables.
+        /// Deletes the old timetables.
         /// </summary>
-        /// <param name="localCache"><c>Local cache</c> folder</param>
-        /// <param name="week">Current <c>week number</c></param>
-        /// <returns></returns>
+        /// <param name="localCache">The local cache folder.</param>
+        /// <param name="week">The week.</param>
+        /// <returns>Deletes all old timetables.</returns>
         private static async Task DeleteOldTimetables(IStorageFolder localCache, int week)
         {
             var filesInFolder = await localCache.GetFilesAsync();
@@ -98,13 +98,11 @@ namespace uwpPlatenInformationScreen.Managers
         }
 
         /// <summary>
-        ///     Checks if the current timetable image has the wrong dimensions.
+        /// Checks if the current timetable image has the wrong dimensions.
         /// </summary>
         /// <param name="canvasHeight">Height of the <c>canvas</c></param>
-        /// <param name="timetableFile">
-        ///     <c>Timetable image</c>
-        /// </param>
-        /// <returns></returns>
+        /// <param name="timetableFile"><c>Timetable image</c></param>
+        /// <returns><c>True</c> if a new timetable needs to be downloaded; <c>False</c> if not.</returns>
         private static async Task<bool> CheckIfBadDimensions(double canvasHeight, IStorageFile timetableFile)
         {
             bool downloadNew = false;
@@ -142,12 +140,12 @@ namespace uwpPlatenInformationScreen.Managers
         }
 
         /// <summary>
-        ///     Downloads the timetable image async
+        /// Downloads the timetable image async
         /// </summary>
         /// <param name="classToDownload"><c>Id</c> of the class to download.</param>
         /// <param name="urlToDownload"><c>Request url</c>.</param>
         /// <param name="localCache"><c>StorageFolder</c> of cache.</param>
-        /// <returns></returns>
+        /// <returns>Download task</returns>
         private static async Task DownloadImageAsync(string classToDownload, string urlToDownload, StorageFolder localCache)
         {
             //get week number

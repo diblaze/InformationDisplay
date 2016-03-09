@@ -13,10 +13,10 @@ namespace uwpPlatenInformationScreen.Managers
     public static class LunchManager
     {
         /// <summary>
-        ///     Retreives JSON Data from Mashie by parsing the HTML.
-        ///     Because of Mashie not having an public API I had to make my own workaround.
+        /// Retreives JSON Data from Mashie by parsing the HTML.
+        /// Because of Mashie not having an public API I had to make my own workaround.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>JSON String with the data.</returns>
         private static async Task<string> GetJsonDataFromMashie()
         {
             //Url to page to parse.
@@ -43,9 +43,11 @@ namespace uwpPlatenInformationScreen.Managers
         }
 
         /// <summary>
-        ///     Retrives JSON data from Mashie and converts it into an object to use.
+        /// Retrives JSON data from Mashie and converts it into an object to use.
         /// </summary>
-        /// <returns><c>Lunch</c></returns>
+        /// <returns>
+        ///   <c>Lunch</c>
+        /// </returns>
         public static async Task<RootObject> GetTodaysLunch()
         {
             try
@@ -71,10 +73,12 @@ namespace uwpPlatenInformationScreen.Managers
         }
 
         /// <summary>
-        ///     Convert JSON message into a readable Microsot JSON message.
+        /// Convert JSON message into a readable Microsot JSON message.
         /// </summary>
         /// <param name="jsonMessage">JSON data from Mashie.</param>
-        /// <returns>Fixed <c>JSON</c></returns>
+        /// <returns>
+        /// Fixed <c>JSON</c>
+        /// </returns>
         private static string FixDateTimeJsonData(string jsonMessage)
         {
             //The issue was the following: "new Date(12345)" is not reconizable by Microsoft's JSON deserializer, however "/Date(12345)/" is!
