@@ -17,10 +17,10 @@ namespace uwpPlatenInformationScreen.Managers
     public class TimetableManager
     {
         /// <summary>
-        /// Gets the current week number.
+        ///     Gets the current week number.
         /// </summary>
         /// <returns>
-        /// Current week number
+        ///     Current week number
         /// </returns>
         private static int GetWeekNumber()
         {
@@ -33,9 +33,8 @@ namespace uwpPlatenInformationScreen.Managers
             return weekNum;
         }
 
-
         /// <summary>
-        /// Gets the timetable.
+        ///     Gets the timetable.
         /// </summary>
         /// <param name="classToDownload">The class to download.</param>
         /// <param name="canvasHeight">Height of the canvas.</param>
@@ -81,9 +80,8 @@ namespace uwpPlatenInformationScreen.Managers
             return image;
         }
 
-
         /// <summary>
-        /// Deletes the old timetables.
+        ///     Deletes the old timetables.
         /// </summary>
         /// <param name="localCache">The local cache folder.</param>
         /// <param name="week">The week.</param>
@@ -98,10 +96,12 @@ namespace uwpPlatenInformationScreen.Managers
         }
 
         /// <summary>
-        /// Checks if the current timetable image has the wrong dimensions.
+        ///     Checks if the current timetable image has the wrong dimensions.
         /// </summary>
         /// <param name="canvasHeight">Height of the <c>canvas</c></param>
-        /// <param name="timetableFile"><c>Timetable image</c></param>
+        /// <param name="timetableFile">
+        ///     <c>Timetable image</c>
+        /// </param>
         /// <returns><c>True</c> if a new timetable needs to be downloaded; <c>False</c> if not.</returns>
         private static async Task<bool> CheckIfBadDimensions(double canvasHeight, IStorageFile timetableFile)
         {
@@ -140,7 +140,7 @@ namespace uwpPlatenInformationScreen.Managers
         }
 
         /// <summary>
-        /// Downloads the timetable image async
+        ///     Downloads the timetable image async
         /// </summary>
         /// <param name="classToDownload"><c>Id</c> of the class to download.</param>
         /// <param name="urlToDownload"><c>Request url</c>.</param>

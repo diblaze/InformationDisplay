@@ -13,11 +13,11 @@ namespace uwpPlatenInformationScreen.Managers
     public static class LunchManager
     {
         /// <summary>
-        /// Retreives JSON Data from Mashie by parsing the HTML.
-        /// Because of Mashie not having an public API I had to make my own workaround.
+        ///     Retreives JSON Data from Mashie by parsing the HTML.
+        ///     Because of Mashie not having an public API I had to make my own workaround.
         /// </summary>
         /// <returns>JSON String with the data.</returns>
-        private static async Task<string> GetJsonDataFromMashie()
+        private static async Task<string> GetJsonDataFromMashieAsync()
         {
             //Url to page to parse.
             const string urlToFetchFrom = @"https://mpi.mashie.eu/public/menu/motala+kommun/af77367d";
@@ -43,17 +43,17 @@ namespace uwpPlatenInformationScreen.Managers
         }
 
         /// <summary>
-        /// Retrives JSON data from Mashie and converts it into an object to use.
+        ///     Retrives JSON data from Mashie and converts it into an object to use.
         /// </summary>
         /// <returns>
-        ///   <c>Lunch</c>
+        ///     <c>Lunch</c>
         /// </returns>
-        public static async Task<RootObject> GetTodaysLunch()
+        public static async Task<RootObject> GetTodaysLunchAsync()
         {
             try
             {
                 //get json data
-                string jsonMessage = await GetJsonDataFromMashie();
+                string jsonMessage = await GetJsonDataFromMashieAsync();
                 //fix the date time
                 jsonMessage = FixDateTimeJsonData(jsonMessage);
 
@@ -73,11 +73,11 @@ namespace uwpPlatenInformationScreen.Managers
         }
 
         /// <summary>
-        /// Convert JSON message into a readable Microsot JSON message.
+        ///     Convert JSON message into a readable Microsot JSON message.
         /// </summary>
         /// <param name="jsonMessage">JSON data from Mashie.</param>
         /// <returns>
-        /// Fixed <c>JSON</c>
+        ///     Fixed <c>JSON</c>
         /// </returns>
         private static string FixDateTimeJsonData(string jsonMessage)
         {

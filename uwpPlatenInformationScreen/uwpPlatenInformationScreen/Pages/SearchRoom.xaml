@@ -27,7 +27,6 @@
                             RelativePanel.AlignVerticalCenterWith="TextBlockInputRoom"
                             Margin="40 20 0 20 "
                             MinWidth="200"
-                            
                             PlaceholderText="T.ex. D215"
                             TextChanged="AutoSuggestBoxSearchRoom_OnTextChanged"
                             SuggestionChosen="AutoSuggestBoxSearchRoom_OnSuggestionChosen" />

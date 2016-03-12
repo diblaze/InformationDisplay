@@ -21,6 +21,9 @@ namespace uwpPlatenInformationScreen.Pages
             LoadLunchMenu();
         }
 
+        /// <summary>
+        /// Populates the lunch text.
+        /// </summary>
         private void PopulateLunchText()
         {
             DateTime todayDateTime = DateTime.Today;
@@ -55,11 +58,14 @@ namespace uwpPlatenInformationScreen.Pages
 
             var stringBuilder = new StringBuilder();
             List<DayMenu> temp;
+            TextToday.FontSize = 48;
+            TextTodaysFood.FontSize = 30;
 
             switch (nameOfDay)
             {
                 case "Måndag":
                     TextToday.Text = "Måndag";
+                    
                     temp = lunchMenu.Weeks[0].Days[0].DayMenus;
                     foreach (DayMenu dayMenu in temp)
                     {
@@ -109,10 +115,13 @@ namespace uwpPlatenInformationScreen.Pages
             TextTodaysFood.Text = createdString;
         }
 
+        /// <summary>
+        /// Loads the lunch menu.
+        /// </summary>
         private async void LoadLunchMenu()
         {
             lunchMenu = new RootObject();
-            lunchMenu = await LunchManager.GetTodaysLunch();
+            lunchMenu = await LunchManager.GetTodaysLunchAsync();
             PopulateLunchText();
         }
     }

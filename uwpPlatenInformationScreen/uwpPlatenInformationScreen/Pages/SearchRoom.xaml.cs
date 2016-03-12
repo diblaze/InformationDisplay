@@ -15,7 +15,6 @@ namespace uwpPlatenInformationScreen.Pages
         public SearchRoom()
         {
             InitializeComponent();
-            
         }
 
         /// <summary>
@@ -25,13 +24,14 @@ namespace uwpPlatenInformationScreen.Pages
         /// <param name="args">The <see cref="AutoSuggestBoxSuggestionChosenEventArgs" /> instance containing the event data.</param>
         private async void AutoSuggestBoxSearchRoom_OnSuggestionChosen(AutoSuggestBox sender,
                                                                        AutoSuggestBoxSuggestionChosenEventArgs args)
+
         {
             //room selected
             string room = args.SelectedItem as string;
-            ImageCanvas.Width = MainGrid.ActualWidth;
-            ImageCanvas.Height = MainGrid.ActualHeight;
+            ImageCanvas.Width = MainGrid.ActualWidth - 100;
+            ImageCanvas.Height = MainGrid.ActualHeight - 100;
 
-            BitmapImage roomImage = await MapSearcher.GetRoomImage(room);
+            BitmapImage roomImage = await MapSearcher.GetRoomImageAsync(room);
             if (roomImage == null)
             {
                 return;

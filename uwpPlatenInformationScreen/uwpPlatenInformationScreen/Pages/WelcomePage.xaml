@@ -18,7 +18,7 @@
                     <!-- Tutorial text -->
                     <TextBlock
                         Text="I menyn till vänster kan Ni välja att se scheman, karta över skolan och kontaktuppgifter!"
-                        FontSize="32"
+                        FontSize="30"
                         TextAlignment="Center"
                         Style="{StaticResource TitleTextBlockStyle}" />
                     <!-- End of tutorial text -->

@@ -133,9 +133,37 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\ForkKnifeLogo.png" />
-    <Content Include="Images\Floors\A.jpg">
+    <Content Include="Images\Floors\A200.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Floors\C\C205.jpg" />
+    <Content Include="Images\Floors\C\C206.jpg" />
+    <Content Include="Images\Floors\C\C207.jpg" />
+    <Content Include="Images\Floors\C\C212.jpg" />
+    <Content Include="Images\Floors\C\C213.jpg" />
+    <Content Include="Images\Floors\C\C217.jpg" />
+    <Content Include="Images\Floors\C\C218.jpg" />
+    <Content Include="Images\Floors\C\C219.jpg" />
+    <Content Include="Images\Floors\C\C221.jpg" />
+    <Content Include="Images\Floors\C\C222.jpg" />
+    <Content Include="Images\Floors\C\C223.jpg" />
+    <Content Include="Images\Floors\C\C227.jpg" />
+    <Content Include="Images\Floors\C\C228.jpg" />
+    <Content Include="Images\Floors\C\C230.jpg" />
+    <Content Include="Images\Floors\C\C403.jpg" />
+    <Content Include="Images\Floors\C\C404.jpg" />
+    <Content Include="Images\Floors\C\C405.jpg" />
+    <Content Include="Images\Floors\C\C409.jpg" />
+    <Content Include="Images\Floors\C\C410.jpg" />
+    <Content Include="Images\Floors\C\C411.jpg" />
+    <Content Include="Images\Floors\C\C412.jpg" />
+    <Content Include="Images\Floors\C\C414.jpg" />
+    <Content Include="Images\Floors\C\C430.jpg" />
+    <Content Include="Images\Floors\C\C432.jpg" />
+    <Content Include="Images\Floors\C\C433.jpg" />
+    <Content Include="Images\Floors\C\C434.jpg" />
+    <Content Include="Images\Floors\C\C435.jpg" />
+    <Content Include="Images\Floors\C\C437.jpg" />
     <Content Include="Images\Floors\D\D203.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -235,6 +263,21 @@
     <Content Include="Images\Floors\D\D273.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Floors\E\Aula.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Floors\E\E403.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Floors\E\E404.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Floors\E\E407.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Floors\E\E408.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -288,8 +331,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Floors\A\" />
-    <Folder Include="Images\Floors\B\" />
-    <Folder Include="Images\Floors\C\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -12,10 +12,38 @@ namespace uwpPlatenInformationScreen.Managers
     internal class MapSearcher
     {
         /// <summary>
-        /// The rooms collection
+        ///     The rooms collection
         /// </summary>
         private static readonly List<string> RoomsCollection = new List<string>
                                                                {
+                                                                   "C205",
+                                                                   "C206",
+                                                                   "C207",
+                                                                   "C212",
+                                                                   "C213",
+                                                                   "C217",
+                                                                   "C218",
+                                                                   "C219",
+                                                                   "C221",
+                                                                   "C222",
+                                                                   "C223",
+                                                                   "C227",
+                                                                   "C228",
+                                                                   "C230",
+                                                                   "C403",
+                                                                   "C404",
+                                                                   "C405",
+                                                                   "C409",
+                                                                   "C410",
+                                                                   "C411",
+                                                                   "C412",
+                                                                   "C414",
+                                                                   "C430",
+                                                                   "C432",
+                                                                   "C433",
+                                                                   "C434",
+                                                                   "C435",
+                                                                   "C437",
                                                                    "D203",
                                                                    "D206",
                                                                    "D207",
@@ -50,19 +78,14 @@ namespace uwpPlatenInformationScreen.Managers
                                                                    "D261",
                                                                    "D270",
                                                                    "D273",
-                                                                   "C200",
-                                                                   "C201",
-                                                                   "C202",
-                                                                   "C203",
-                                                                   "C204",
-                                                                   "C205",
-                                                                   "C206",
-                                                                   "C207",
-
+                                                                   "E403",
+                                                                   "E404",
+                                                                   "E407",
+                                                                   "E408"
                                                                };
 
         /// <summary>
-        ///     Searches for room asynchronous.
+        ///     Searches for room.
         /// </summary>
         /// <param name="room">The room searched for.</param>
         /// <returns>All rooms matching the inputed text</returns>
@@ -72,11 +95,11 @@ namespace uwpPlatenInformationScreen.Managers
         }
 
         /// <summary>
-        /// Gets the room image.
+        ///     Gets the room image.
         /// </summary>
         /// <param name="room">The room.</param>
         /// <returns></returns>
-        public static async Task<BitmapImage> GetRoomImage(string room)
+        public static async Task<BitmapImage> GetRoomImageAsync(string room)
         {
             //image
             BitmapImage roomImage = null;
@@ -87,16 +110,17 @@ namespace uwpPlatenInformationScreen.Managers
             switch (houseToPullPicture)
             {
                 case "A":
-                    roomImage = await FindRoom("A", room.Substring(1));
+                    roomImage = await FindRoomAsync("A", room.Substring(1));
                     break;
-                case "B":
-                    roomImage = await FindRoom("B", room.Substring(1));
-                    break;
+
                 case "C":
-                    roomImage = await FindRoom("C", room.Substring(1));
+                    roomImage = await FindRoomAsync("C", room.Substring(1));
                     break;
                 case "D":
-                    roomImage = await FindRoom("D", room.Substring(1));
+                    roomImage = await FindRoomAsync("D", room.Substring(1));
+                    break;
+                case "E":
+                    roomImage = await FindRoomAsync("E", room.Substring(1));
                     break;
                 default:
                     break;
@@ -106,12 +130,12 @@ namespace uwpPlatenInformationScreen.Managers
         }
 
         /// <summary>
-        /// Finds the room image.
+        ///     Finds the room image.
         /// </summary>
         /// <param name="floor">The floor.</param>
         /// <param name="number">The number.</param>
         /// <returns><c>BitmapImage</c> of the room image</returns>
-        private static async Task<BitmapImage> FindRoom(string floor, string number)
+        private static async Task<BitmapImage> FindRoomAsync(string floor, string number)
         {
             //find install location to find our images
             StorageFolder installedLocation = Package.Current.InstalledLocation;
@@ -124,36 +148,37 @@ namespace uwpPlatenInformationScreen.Managers
                 case "A":
                     imageFolder = (StorageFolder) await installedLocation.TryGetItemAsync(@"Images\Floors\A");
                     break;
-                case "B":
-                    imageFolder = (StorageFolder) await installedLocation.TryGetItemAsync(@"Images\Floors\B");
-                    break;
+
                 case "C":
                     imageFolder = (StorageFolder) await installedLocation.TryGetItemAsync(@"Images\Floors\C");
                     break;
                 case "D":
                     imageFolder = (StorageFolder) await installedLocation.TryGetItemAsync(@"Images\Floors\D");
                     break;
+                case "E":
+                    imageFolder = (StorageFolder) await installedLocation.TryGetItemAsync(@"Images\Floors\E");
+                    break;
             }
 
             //does an image for the room exist?
-            StorageFile imageFile = (StorageFile) await imageFolder?.TryGetItemAsync(floor + number + ".jpg");
+            var imageFile = (StorageFile) await imageFolder?.TryGetItemAsync(floor + number + ".jpg");
 
             //if not
             if (imageFile == null)
             {
                 //show error message
-                MessageDialog errorDialog = new MessageDialog("Kunde inte hitta sal!", "Fel");
+                var errorDialog = new MessageDialog("Kunde inte hitta sal!", "Fel");
                 await errorDialog.ShowAsync();
                 return null;
             }
-            
+
             //read and create a new bitmapimage from the room image in folder.
-            var image = new BitmapImage(new Uri(imageFolder?.Path + @"\" + floor+number + ".jpg"));
-                
+            var image = new BitmapImage(new Uri(imageFolder?.Path + @"\" + floor + number + ".jpg"));
+
             return image;
         }
 
-        public static async Task<BitmapImage> GetFloorImage(string house)
+        public static async Task<BitmapImage> GetFloorImageAsync(string house, string floor)
         {
             //image
             BitmapImage floorImage = null;
@@ -163,16 +188,17 @@ namespace uwpPlatenInformationScreen.Managers
             switch (house)
             {
                 case "A":
-                    floorImage = await FindFloor("A");
+                    floorImage = await FindFloor(floor);
                     break;
-                case "B":
-                    floorImage = await FindFloor("B");
-                    break;
+
                 case "C":
-                    floorImage = await FindFloor("C");
+                    floorImage = await FindFloor(floor);
                     break;
                 case "D":
-                    floorImage = await FindFloor("D");
+                    floorImage = await FindFloor(floor);
+                    break;
+                case "E":
+                    floorImage = await FindFloor(floor);
                     break;
                 default:
                     break;
@@ -181,21 +207,26 @@ namespace uwpPlatenInformationScreen.Managers
             return floorImage;
         }
 
+        /// <summary>
+        ///     Finds the floor.
+        /// </summary>
+        /// <param name="floor">The floor.</param>
+        /// <returns>The floor image.</returns>
         private static async Task<BitmapImage> FindFloor(string floor)
         {
             //find install location to find our images
             StorageFolder installedLocation = Package.Current.InstalledLocation;
             //holder for our image folder
-            StorageFolder imageFolder = (StorageFolder)await installedLocation.TryGetItemAsync(@"Images\Floors");
+            var imageFolder = (StorageFolder) await installedLocation.TryGetItemAsync(@"Images\Floors");
 
             //does an image for the room exist?
-            StorageFile imageFile = (StorageFile)await imageFolder?.TryGetItemAsync(floor + ".jpg");
+            var imageFile = (StorageFile) await imageFolder?.TryGetItemAsync(floor + ".jpg");
 
             //if not
             if (imageFile == null)
             {
                 //show error message
-                MessageDialog errorDialog = new MessageDialog("Kunde inte hitta våning!", "Fel");
+                var errorDialog = new MessageDialog("Kunde inte hitta våning!", "Fel");
                 await errorDialog.ShowAsync();
                 return null;
             }

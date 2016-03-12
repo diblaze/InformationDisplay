@@ -18,15 +18,15 @@
                            RelativePanel.AlignHorizontalCenterWithPanel="True" />
                 <TextBlock Margin="0 20 0 40"
                            Name="TextMadeBy1"
-                           Text="Denis Ivan Blazevic (Programmer) - denicevap@gmail.com"
+                           Text="Denis Ivan Blazevic (Programmer) - denis.blaze@outlook.com"
                            Style="{StaticResource BodyTextBlockStyle}"
-                           FontSize="62"
+                           FontSize="38"
                            RelativePanel.AlignHorizontalCenterWithPanel="True"
                            RelativePanel.Below="TextMadeByTitle" />
                 <TextBlock Name="TextMadeBy2"
-                           Text="Linus Töllborn (UI) - PlaceholderMail"
+                           Text="Linus Töllborn (UI) - l.j.o97@hotmail.com"
                            Style="{StaticResource BodyTextBlockStyle}"
-                           FontSize="62"
+                           FontSize="38"
                            RelativePanel.AlignHorizontalCenterWithPanel="True"
                            RelativePanel.Below="TextMadeBy1" />
 
