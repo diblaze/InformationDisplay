@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
-  <contractRef ref="http://www.novasoftware.se/schedulewebservice/service.asmx?wsdl" docRef="http://www.novasoftware.se/schedulewebservice/service.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
-  <soap address="http://www.novasoftware.se/schedulewebservice/service.asmx" xmlns:q1="http://www.novasoftware.se/webservices" binding="q1:ScheduleFileWebServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-  <soap address="http://www.novasoftware.se/schedulewebservice/service.asmx" xmlns:q2="http://www.novasoftware.se/webservices" binding="q2:ScheduleFileWebServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-</discovery>
